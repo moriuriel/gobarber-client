@@ -15,13 +15,20 @@ import logoImg from '../../assets/logo.svg';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
+interface SignInFormDate {
+  email: string;
+  oldPassword: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
 
   const handleSubmit = useCallback(
-    async (data: object) => {
+    async (data: SignInFormDate) => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
